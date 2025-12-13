@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>銀光慢旅 Silver Stroll | 長照休閒資訊網</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* --- 視覺風格設定 --- */
+        :root {
+            --main-green: #7C9473;   /* 鼠尾草綠 */
+            --warm-orange: #F4A261;  /* 暖陽橘 */
+            --bg-cream: #FEFAE0;     /* 米白色 */
+            --text-dark: #333333;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text-dark);
+            font-size: 18px;
+            padding-top: 76px;
+            transition: font-size 0.3s ease;
+        }
+        
+        html {
+             scroll-behavior: smooth;
+        }
+
+        /* 導覽列 */
+        .navbar {
+            background-color: var(--main-green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        /* --- 首頁輪播樣式 --- */
+        .carousel-item-hero {
+            height: 650px;
+            background-size: cover;
+            background-position: center center;
+            position: relative;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .carousel-caption-custom {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item-hero {
+                height: 450px;
+            }
+        }
+
+        /* 標題與卡片樣式 */
+        h2.section-title {
+            color: var(--main-green);
+            border-bottom: 3px solid var(--warm-orange);
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-primary {
+            background-color: var(--warm-orange);
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e76f51;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--main-green);
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-heart-pulse"></i> 銀光慢旅
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-light" onclick="resizeText(-1)">A-</button>
+                            <button type="button" class="btn btn-outline-light" onclick="resetText()">A</button>
+                            <button type="button" class="btn btn-outline-light" onclick="resizeText(1)">A+</button>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#home">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#map">無礙地圖</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#health">健康補給</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#caregiver">照顧者專區</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner">
+                
+                <div class="carousel-item active">
+                    <div class="carousel-item-hero" style="background-image: url('/bonner1.jpg');">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-caption-custom">
+                            <h1 class="display-3 fw-bold">行無礙，心無礙</h1>
+                            <p class="lead my-4 fs-4">專為銀髮族與行動不便者設計的<br>旅遊休閒資訊網</p>
+                            <a href="#map" class="btn btn-primary btn-lg mt-3">開始探索景點</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-item-hero" style="background-image: url('/bonner2.jpg');">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-caption-custom">
+                            <h1 class="display-3 fw-bold">慢步調，享生活</h1>
+                            <p class="lead my-4 fs-4">精選全台平緩步道與無障礙設施<br>讓陪伴更輕鬆</p>
+                            <a href="#health" class="btn btn-outline-light btn-lg mt-3">閱讀健康指引</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-item-hero" style="background-image: url('/bonner3.jpg');">
+                        <div class="carousel-overlay"></div>
+                        <div class="carousel-caption-custom">
+                            <h1 class="display-3 fw-bold">給照顧者的支持</h1>
+                            <p class="lead my-4 fs-4">您需要休息，我們懂。<br>尋找喘息資源與心靈補給。</p>
+                            <a href="#caregiver" class="btn btn-primary btn-lg mt-3">前往照顧者專區</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="map" class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">推薦無障礙景點</h2>
+            <p>精選坡道平緩、設施完善的旅遊好去處</p>
+        </div>
+        <div class="mb-5 shadow rounded overflow-hidden">
+            <h3 class="p-3 bg-light text-dark mb-0">🏞️ 無障礙景點地圖總覽</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.882193910543!2d120.2173516149811!3d23.70817359858348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e91d6f2c322c3%3A0x8f7815d311915c2a!2z6IeS5p2x6KGM54iM55aK57ag5rKz5b2w6Lih!5e0!3m2!1szh-TW!2stw!4v1701140000000" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://placehold.co/600x400/7C9473/FFFFFF?text=Museum+View" class="card-img-top" alt="國立故宮博物院南部院區">
+                    <div class="card-body">
+                        <span class="badge bg-success mb-2">文化景點</span>
+                        <h5 class="card-title fw-bold">國立故宮博物院南部院區</h5>
+                        <p class="card-text small">廣闊的園區設計對輪椅非常友善，設有完善的無障礙電梯與廁所，適合慢行漫遊。</p>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">無礙詳情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://placehold.co/600x400/A0B99C/FFFFFF?text=Green+Tunnel" class="card-img-top" alt="綠色隧道">
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">自然戶外</span>
+                        <h5 class="card-title fw-bold">台南四草綠色隧道</h5>
+                        <p class="card-text small">有專為行動不便者設計的搭船區，且步道多為平坦路面，可輕鬆享受自然風光。</p>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">無礙詳情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://placehold.co/600x400/F4A261/FFFFFF?text=Hot+Spring" class="card-img-top" alt="礁溪溫泉公園">
+                    <div class="card-body">
+                        <span class="badge bg-warning text-dark mb-2">休閒養生</span>
+                        <h5 class="card-title fw-bold">宜蘭礁溪溫泉公園</h5>
+                        <p class="card-text small">部分溫泉區設有無障礙泡湯設施，戶外公園環境平整，適合長者泡腳休息。</p>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">無礙詳情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="health" class="py-5" style="background-color: white;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">樂活健康專欄</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="https://placehold.co/600x400/E9C46A/FFFFFF?text=Healthy+Food" class="img-fluid rounded shadow" alt="健康飲食">
+                </div>
+                <div class="col-md-6">
+                    <h3>秋季養生：長者飲食指南</h3>
+                    <p class="mt-3">隨著天氣轉涼，長者的心血管照護格外重要。專家建議多攝取深色蔬菜與優質蛋白質。適當的飲食能幫助維持體力和免疫力，讓旅途更安全。</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">✅ 每日攝取足夠水分</li>
+                        <li class="list-group-item">✅ 選擇易消化的食物</li>
+                        <li class="list-group-item">✅ 低油低鹽，保持原味</li>
+                    </ul>
+                    <button class="btn btn-primary mt-3">閱讀全文</button>
+                </div>
+            </div>
+
+            <hr class="my-5">
+            <h3 class="text-center mb-4 text-secondary">更多健康文章</h3>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-light h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">長者簡易伸展圖解</h5>
+                            <p class="card-text small">每天十分鐘，改善關節柔軟度，預防跌倒風險。</p>
+                            <a href="#" class="btn btn-sm btn-outline-warning">開始運動</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-light h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">旅遊藥物準備清單</h5>
+                            <p class="card-text small">出遠門前，該準備哪些慢性病藥物與急救用品？</p>
+                            <a href="#" class="btn btn-sm btn-outline-warning">查看清單</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-light h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">心理健康：排解孤單感</h5>
+                            <p class="card-text small">學習與他人連結，保持積極心態，享受退休生活。</p>
+                            <a href="#" class="btn btn-sm btn-outline-warning">了解方法</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="caregiver" class="container py-5">
+        <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border-start border-5 border-warning">
+            <div class="container-fluid py-2">
+                <h2 class="display-6 fw-bold text-dark">給照顧者的勉勵</h2>
+                <p class="col-md-8 fs-5">您辛苦了。長照是一條漫長的路，請記得適時停下腳步，給自己一杯咖啡的時間。這裡彙整了政府提供的「喘息服務」資源。</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h4 class="text-warning">📞 立即撥打：長照服務專線</h4>
+                        <h1 class="display-4 fw-bold text-dark">1966</h1>
+                        <p class="small">免付費專線，提供專業人員諮詢與服務申請。</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-dark">📖 實用資源連結</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-light"><a href="#" class="text-dark text-decoration-none fw-bold">👉 了解喘息服務類型與費用</a></li>
+                            <li class="list-group-item bg-light"><a href="#" class="text-dark text-decoration-none">🤝 照顧者心理支持熱線與團體</a></li>
+                            <li class="list-group-item bg-light"><a href="#" class="text-dark text-decoration-none">📘 各縣市長照資源手冊下載</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn btn-dark btn-lg mt-4">尋求協助資源</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>銀光慢旅</h5>
+                    <p class="small">老化不是生命的枯竭，<br>而是另一種慢速的熟成。</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">關於我們</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">隱私權政策</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>訂閱電子報</h5>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="輸入 Email">
+                        <button class="btn btn-warning" type="button">訂閱</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="mb-0 small">© 20251213 111D12024 張瓊文.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let currentFontSize = 18;
+        function resizeText(multiplier) {
+            const body = document.body;
+            if (multiplier === 1 && currentFontSize < 24) {
+                currentFontSize += 2;
+            } else if (multiplier === -1 && currentFontSize > 16) {
+                currentFontSize -= 2;
+            }
+            body.style.fontSize = currentFontSize + "px";
+        }
+        function resetText() {
+            currentFontSize = 18;
+            document.body.style.fontSize = "18px";
+        }
+    </script>
+</body>
+</html>
